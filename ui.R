@@ -10,7 +10,7 @@ dashboardPage(
                     "statesShow", 
                     label = "States",
                     choices = states, 
-                    selected = c("New York", "Florida"),
+                    selected = c("Connecticut", "Florida"),
                     multiple = TRUE,
                     width = "100%"
                 ) 
