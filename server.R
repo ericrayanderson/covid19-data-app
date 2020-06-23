@@ -15,7 +15,7 @@ function(input, output, session) {
             ),
             tags$br(),
             tags$a(
-                href = data_src,
+                href = "https://github.com/ericrayanderson/covid19-data-app",
                 target = "_blank",
                 HTML("Source Code", '<i class="fa fa-external-link" aria-hidden="true"></i>')
             )

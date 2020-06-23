@@ -35,7 +35,7 @@ build_covid19_data <- function(.src){
       )
     ) %>% 
     ungroup() %>% 
-    left_join(readr::read_csv("state_pop.csv"))
+    left_join(readr::read_csv("data/state_pop.csv"))
   
   
   country_covid_data <- 

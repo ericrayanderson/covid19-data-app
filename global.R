@@ -2,7 +2,7 @@
 library(tidyverse)
 library(shinydashboard)
 
-states_df <- readr::read_csv("states.csv")
+states_df <- readr::read_csv("data/states.csv")
 
 data_src <- "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
 
