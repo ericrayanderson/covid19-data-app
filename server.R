@@ -6,8 +6,11 @@ function(input, output, session) {
     
     output$dateSource <- renderUI({
         tags$h4(
-            HTML(paste0("Data updated:<br>", max(covid19_data()$date)))
+            icon("calendar"),
+            "Updated: ",
+            max(covid19_data()$date)
         )
+        
     })
     
     
