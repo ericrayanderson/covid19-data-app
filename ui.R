@@ -23,7 +23,7 @@ dashboardPage(
                 width = 2,
                 shinyWidgets::switchInput(inputId = "logScale",
                                           label = "Log Scale",
-                                          value = TRUE)
+                                          value = FALSE)
                 
             ),
             column(
