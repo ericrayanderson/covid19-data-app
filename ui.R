@@ -11,9 +11,9 @@ dashboardPage(
                 icon("github")
             )
         ),
-        titleWidth = 300),
+        titleWidth = 275),
     dashboardSidebar(
-        width = 300,
+        width = 275,
         tags$br(),
         fluidRow(
             column(
