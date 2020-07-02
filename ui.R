@@ -20,9 +20,9 @@ dashboardPage(
                 )
             ),
             column(
-                width = 1,
+                width = 2,
                 shinyWidgets::switchInput(inputId = "logScale",
-                                          label = "Log",
+                                          label = "Log Scale",
                                           value = TRUE)
                 
             ),
@@ -31,12 +31,13 @@ dashboardPage(
                 uiOutput("dateSource")
             ),
             column(
-                width = 3,
+                width = 2,
                 tags$a(
                     href = data_src,
                     target = "_blank",
                     HTML("Data Source", '<i class="fa fa-external-link" aria-hidden="true"></i>')
                 ),
+                tags$br(),
                 tags$a(
                     href = "https://github.com/ericrayanderson/covid19-data-app",
                     target = "_blank",

@@ -5,8 +5,8 @@ function(input, output, session) {
     })
     
     output$dateSource <- renderUI({
-        tagList(
-            paste0("Data updated: ", max(covid19_data()$date))
+        tags$h4(
+            HTML(paste0("Data updated:<br>", max(covid19_data()$date)))
         )
     })
     
