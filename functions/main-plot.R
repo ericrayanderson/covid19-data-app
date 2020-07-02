@@ -1,5 +1,17 @@
 main_plot <- function(.covid19_data, .covid19_last_data, .type, input){
   
+  
+  gg_color_hue <- function(n) {
+    hues = seq(15, 375, length = n + 1)
+    hcl(h = hues, l = 65, c = 100)[1:n]
+  }
+  
+  
+  .colors <- 
+    .covid19_data %>%
+    distinct(abbr) %>%
+    mutate(col = gg_color_hue(n()))
+  
   plot_data <- .covid19_data %>% filter(grepl(.type, key))
   last_data <- .covid19_last_data %>% filter(grepl(.type, key))
   
@@ -18,6 +30,10 @@ main_plot <- function(.covid19_data, .covid19_last_data, .type, input){
       ) 
   }
   
+  .colors <- .colors %>% filter(abbr %in% plot_data$abbr)
+  .colors_c <- .colors$col
+  names(.colors_c) <- .colors$abbr
+  
   ans <- 
     ggplot(
       data = plot_data,
@@ -27,6 +43,7 @@ main_plot <- function(.covid19_data, .covid19_last_data, .type, input){
     geom_line(
       data = plot_data %>% filter(state == "United States"),
       aes(size = type), color = "black", show.legend = FALSE) +
+    scale_color_manual(values = .colors_c) + 
     scale_alpha_manual(values = c(1, .5)) +
     scale_size_manual(values = c("US" = 2, "States" = 1), guide = FALSE) + 
     theme_classic(base_size = 18) +
@@ -93,5 +110,8 @@ main_plot <- function(.covid19_data, .covid19_last_data, .type, input){
     ) +
     facet_wrap(~key, nrow = 2, scales="free_y")
   
+  if(input$logScale){
+    ans <- ans + scale_y_log10()
+  }
   return(ans)
 }

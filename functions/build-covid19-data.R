@@ -1,23 +1,20 @@
-build_covid19_data <- function(.src){
+build_covid19_data <- function(.src, .live_src){
+  
+  .state_data <- readr::read_csv(.src) %>% select(-fips)
   
   state_covid_data <- 
-    readr::read_csv(.src) %>% 
+    .state_data %>% 
+    bind_rows(
+      readr::read_csv(.live_src) %>% select(colnames(.state_data))
+    ) %>%
     filter(
+      date >= as.Date("2020-03-01"),
       !(state %in% c("Northern Mariana Islands",
                      "Virgin Islands",
                      "Puerto Rico",
                      "Guam")
       )
     ) %>% 
-    group_by(
-      date, 
-      state
-    ) %>% 
-    summarise(
-      cases = sum(cases),
-      deaths = sum(deaths)
-    ) %>% 
-    ungroup() %>% 
     arrange(state, date) %>% 
     group_by(state) %>% 
     mutate(
@@ -54,10 +51,11 @@ build_covid19_data <- function(.src){
     )
   
   
-  bind_rows(
-    state_covid_data,
-    country_covid_data
-  ) %>% 
+  ans <- 
+    bind_rows(
+      state_covid_data,
+      country_covid_data
+    ) %>% 
     arrange(state, date) %>% 
     group_by(state) %>% 
     mutate(
@@ -89,6 +87,10 @@ build_covid19_data <- function(.src){
         state == "United States" ~ "US",
         TRUE ~ "States"
       )
+    ) %>% 
+    filter(
+      value > 0
     )
   
+  ans 
 }

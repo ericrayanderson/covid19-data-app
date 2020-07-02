@@ -5,19 +5,43 @@ dashboardPage(
     dashboardBody(
         fluidRow(
             column(
-                width = 10,
-                selectInput(
-                    "statesShow", 
-                    label = "States",
+                width = 6,
+                shinyWidgets::pickerInput(
+                    inputId = "statesShow", 
+                    label = "View States", 
                     choices = states, 
                     selected = c("Connecticut", "Florida"),
-                    multiple = TRUE,
-                    width = "100%"
-                ) 
+                    options = list(
+                        `actions-box` = TRUE, 
+                        size = 10,
+                        `selected-text-format` = "count > 8"
+                    ), 
+                    multiple = TRUE, width = "100%"
+                )
+            ),
+            column(
+                width = 1,
+                shinyWidgets::switchInput(inputId = "logScale",
+                                          label = "Log",
+                                          value = TRUE)
+                
             ),
             column(
                 width = 2,
                 uiOutput("dateSource")
+            ),
+            column(
+                width = 3,
+                tags$a(
+                    href = data_src,
+                    target = "_blank",
+                    HTML("Data Source", '<i class="fa fa-external-link" aria-hidden="true"></i>')
+                ),
+                tags$a(
+                    href = "https://github.com/ericrayanderson/covid19-data-app",
+                    target = "_blank",
+                    HTML("Source Code", '<i class="fa fa-external-link" aria-hidden="true"></i>')
+                )
             )
         ),
         fluidRow(

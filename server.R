@@ -1,24 +1,12 @@
 function(input, output, session) {
     
     covid19_data <- eventReactive(session, {
-        build_covid19_data(.src = data_src)
+        build_covid19_data(.src = data_src, .live_src = live_data_src)
     })
     
     output$dateSource <- renderUI({
         tagList(
-            paste0("Data updated: ", max(covid19_data()$date)),
-            tags$br(),
-            tags$a(
-                href = data_src,
-                target = "_blank",
-                HTML("Data Source", '<i class="fa fa-external-link" aria-hidden="true"></i>')
-            ),
-            tags$br(),
-            tags$a(
-                href = "https://github.com/ericrayanderson/covid19-data-app",
-                target = "_blank",
-                HTML("Source Code", '<i class="fa fa-external-link" aria-hidden="true"></i>')
-            )
+            paste0("Data updated: ", max(covid19_data()$date))
         )
     })
     
