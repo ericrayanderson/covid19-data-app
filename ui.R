@@ -1,4 +1,4 @@
-dashboardPage(
+dashboardPage(title = "COVID-19 Data",
     skin = "purple", 
     dashboardHeader(
         title = tagList(
