@@ -62,7 +62,6 @@ dashboardPage(title = "COVID-19 Data",
                 plotOutput("covid19_barPlotAvgDeaths", height = 525)
             )
         ),
-        tags$hr(),
         fluidRow(
             column(
                 width = 6,

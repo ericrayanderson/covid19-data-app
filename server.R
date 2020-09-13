@@ -49,7 +49,8 @@ function(input, output, session) {
         
         bar_plot(
             .covid19_last_data = covid19_last_data(),
-            .type = "Avg. Cases"
+            .type = "Avg. Cases",
+            input = input
         )
     }, bg="transparent")
     
@@ -57,7 +58,8 @@ function(input, output, session) {
         
         bar_plot(
             .covid19_last_data = covid19_last_data(),
-            .type = "Avg. Deaths"
+            .type = "Avg. Deaths",
+            input = input
         )
     }, bg="transparent")
     
@@ -65,7 +67,8 @@ function(input, output, session) {
         
         bar_plot(
             .covid19_last_data = covid19_last_data(),
-            .type = "Total Cases"
+            .type = "Total Cases",
+            input = input
         )
     }, bg="transparent")
     
@@ -73,7 +76,8 @@ function(input, output, session) {
         
         bar_plot(
             .covid19_last_data = covid19_last_data(),
-            .type = "Total Deaths"
+            .type = "Total Deaths",
+             input = input
         )
     }, bg="transparent")
     
