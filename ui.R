@@ -52,6 +52,27 @@ dashboardPage(title = "COVID-19 Data",
                 plotOutput("covid19_plotCumul", height = 525)
             )
         ),
+        fluidRow(
+            column(
+                width = 6,
+                plotOutput("covid19_barPlotAvgCases", height = 525)
+            ),
+            column(
+                width = 6,
+                plotOutput("covid19_barPlotAvgDeaths", height = 525)
+            )
+        ),
+        tags$hr(),
+        fluidRow(
+            column(
+                width = 6,
+                plotOutput("covid19_barPlotTotalCases", height = 525)
+            ),
+            column(
+                width = 6,
+                plotOutput("covid19_barPlotTotalDeaths", height = 525)
+            )
+        ),
         tags$br(),
         tags$a(
             target = "_blank",
