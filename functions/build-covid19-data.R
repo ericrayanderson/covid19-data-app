@@ -4,15 +4,16 @@ build_covid19_data <- function(.src, .live_src){
   
   state_covid_data <- 
     .state_data %>% 
-    bind_rows(
-      readr::read_csv(.live_src) %>% select(colnames(.state_data))
-    ) %>%
+    # bind_rows(
+    #   readr::read_csv(.live_src) %>% select(colnames(.state_data))
+    # ) %>%
     filter(
       date >= as.Date("2020-03-01"),
       !(state %in% c("Northern Mariana Islands",
                      "Virgin Islands",
                      "Puerto Rico",
-                     "Guam")
+                     "Guam",
+                     "American Samoa")
       )
     ) %>% 
     arrange(state, date) %>% 
@@ -32,7 +33,7 @@ build_covid19_data <- function(.src, .live_src){
       )
     ) %>% 
     ungroup() %>% 
-    left_join(readr::read_csv("data/state_pop.csv"))
+    inner_join(readr::read_csv("data/state_pop.csv"))
   
   
   country_covid_data <- 

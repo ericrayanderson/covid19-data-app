@@ -1,0 +1,13 @@
+name: covid19-data-app
+title: covid19-data-app
+username:
+account: ericrayanderson
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2491467
+bundleId: 5575217
+url: https://ericrayanderson.shinyapps.io/covid19-data-app/
+when: 1644787594.07345
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: README.md

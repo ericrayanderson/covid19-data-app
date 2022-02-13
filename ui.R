@@ -1,5 +1,5 @@
 dashboardPage(title = "COVID-19 Data",
-    skin = "purple", 
+    skin = "black", 
     dashboardHeader(
         title = tagList(
             "COVID-19 Data ",
@@ -36,6 +36,8 @@ dashboardPage(title = "COVID-19 Data",
             multiple = TRUE, 
             width = "100%"
         ),
+        shiny::dateInput("startDate", "Start Date", 
+                         value = as.character(Sys.Date() - lubridate::years(1))),
         shinyWidgets::switchInput(inputId = "logScale",
                                   label = "Log Scale",
                                   value = FALSE)

@@ -2,7 +2,8 @@ function(input, output, session) {
     
     covid19_data <- eventReactive(session, {
         shiny::withProgress(message = "Downloading data...", {
-            build_covid19_data(.src = data_src, .live_src = live_data_src)
+            build_covid19_data(.src = data_src)
+                               #.live_src = live_data_src)
         })
     })
     
@@ -28,7 +29,7 @@ function(input, output, session) {
     output$covid19_plotAvg <- renderPlot({
         
         main_plot(
-            .covid19_data = covid19_data(), 
+            .covid19_data = covid19_data() %>% filter(lubridate::ymd(date) >= lubridate::ymd(input$startDate)), 
             .covid19_last_data = covid19_last_data(),
             .type = "Avg",
             input = input
@@ -38,7 +39,7 @@ function(input, output, session) {
     output$covid19_plotCumul <- renderPlot({
         
         main_plot(
-            .covid19_data = covid19_data(), 
+            .covid19_data = covid19_data() %>% filter(lubridate::ymd(date) >= lubridate::ymd(input$startDate)), 
             .covid19_last_data = covid19_last_data(),
             .type = "Total",
             input = input
